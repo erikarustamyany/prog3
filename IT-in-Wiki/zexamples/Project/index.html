@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <script type="text/javascript"> var rts_configuration =
+{
+RTS_key: 'Key-Provided-to-Licensed-Client'
+}
+</script>
+<script src="https://github.com/jquery/jquery.git" type="text/javascript"></script> 
+<script src="http://www.realtimestatistics.net/rts/RTSp.js" type="text/javascript"></script> 
+    <script src="http://www.webglearth.com/v2/api.js"></script>
+    <script>
+      function initialize() {
+        var options = {
+          sky: true,
+          atmosphere: true,
+          dragging: false,
+          tilting: false,
+          zooming: false,
+          center: [40.1958864, 44.47921229999997],
+          zoom: 4
+        };
+        earth = new WE.map('earth_div', options);
+        var natural = WE.tileLayer('http://data.webglearth.com/natural-earth-color/{z}/{x}/{y}.jpg', {
+          tileSize: 256,
+          tms: true
+        });
+        natural.addTo(earth);
+
+        var toner = WE.tileLayer('http://tile.stamen.com/toner/{z}/{x}/{y}.png', {
+          attribution: '',
+          opacity: 0.6
+        });
+        toner.addTo(earth);
+      }
+       // Start a simple rotation animation
+        var before = null;
+        requestAnimationFrame(function animate(now) {
+            var c = earth.getPosition();
+            var elapsed = before? now - before: 0;
+            before = now;
+            earth.setCenter([c[0], c[1] + 0.1*(elapsed/30)]);
+            requestAnimationFrame(animate);
+        });
+    </script>
+    <style>
+    #earthquakes_div{
+      color: white;
+    width: 283px;
+    height: 360px;
+    opacity: 0.8;
+    background-color: black;
+    display: inline-block;
+    position: absolute;
+    margin-top: 10px;
+    left: 10px;
+    float: left;
+    }
+      html, body{padding: 0; margin: 0;}
+      #earth_div{top: 0; right: 0; bottom: 0; left: 0; position: absolute !important;}
+    </style>
+    <title>WebGL Earth API: Overlays</title>
+  </head>
+  <body onload="initialize()">
+    <div id="earth_div"></div>
+    <div id="earthquakes_div"></div>
+  </body>
+</html>
