@@ -1,16 +1,18 @@
 <!DOCTYPE HTML>
 <html>
   <head>
+    
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <script src="http://www.realtimestatistics.net/rts/RTSp.js" type="text/javascript"></script>
     <script type="text/javascript"> var rts_configuration =
-{
-RTS_key: 'Key-Provided-to-Licensed-Client'
-}
-</script>
-<script src="https://github.com/jquery/jquery.git" type="text/javascript"></script> 
-<script src="http://www.realtimestatistics.net/rts/RTSp.js" type="text/javascript"></script> 
+      {
+      RTS_key: 'Key-Provided-to-Licensed-Client'
+      }
+    </script>
     <script src="http://www.webglearth.com/v2/api.js"></script>
-    <script>
-      function initialize() {
+    <script>function initialize() {
         var options = {
           sky: true,
           atmosphere: true,
@@ -42,7 +44,7 @@ RTS_key: 'Key-Provided-to-Licensed-Client'
             earth.setCenter([c[0], c[1] + 0.1*(elapsed/30)]);
             requestAnimationFrame(animate);
         });
-    </script>
+          </script>
     <style>
     #earthquakes_div{
       color: white;
@@ -64,5 +66,6 @@ RTS_key: 'Key-Provided-to-Licensed-Client'
   <body onload="initialize()">
     <div id="earth_div"></div>
     <div id="earthquakes_div"></div>
-  </body>
+
+   </body>
 </html>
